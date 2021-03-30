@@ -1,0 +1,71 @@
+Utilisateur : 
+
+CREATE TABLE `utilisateur` (
+ `ID` int NOT NULL AUTO_INCREMENT,
+ `Username` varchar(255) NOT NULL,
+ `Password` varchar(255) NOT NULL,
+ `Email` varchar(255) NOT NULL,
+ `Nom` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+ `Age` int DEFAULT NULL,
+ `Sexe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+ `NumTel` int NOT NULL,
+ `DateCreation` date DEFAULT NULL,
+ `Auth` int DEFAULT NULL,
+ `Code` int DEFAULT NULL,
+ `Image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+ PRIMARY KEY (`ID`),
+ UNIQUE KEY `UserUN` (`Username`),
+ UNIQUE KEY `EmailUN` (`Email`)
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8
+
+
+reclamation : 
+
+CREATE TABLE `reclamation` (
+ `IDRec` int NOT NULL AUTO_INCREMENT,
+ `UserRec` varchar(255) NOT NULL,
+ `Objet` varchar(255) NOT NULL,
+ `Message` varchar(2555) NOT NULL,
+ `Image` varchar(255) DEFAULT NULL,
+ `DateAjout` date NOT NULL,
+ PRIMARY KEY (`IDRec`)
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8
+
+
+Coach : 
+
+CREATE TABLE `coach` (
+ `IDC` int NOT NULL AUTO_INCREMENT,
+ `IDUser` int NOT NULL,
+ `Filiere` varchar(255) NOT NULL,
+ `AnExp` int NOT NULL,
+ `Region` varchar(255) NOT NULL,
+ `Proof` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+ `Confirmed` int DEFAULT '0',
+ PRIMARY KEY (`IDC`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8
+news:
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Contenu` text NOT NULL,
+  `Titre` text NOT NULL,
+  `ImageNews` varchar(255) DEFAULT NULL,
+  `Date` date NOT NULL,
+  `TypeSport` varchar(255) DEFAULT NULL,
+  `nbreacts` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4
+
+commentaire:
+
+CREATE TABLE `commentaire` (
+  `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
+  `Contenu` text NOT NULL,
+  `dateCommentaire` date NOT NULL,
+  `idNews` int(11) NOT NULL,
+  PRIMARY KEY (`idCommentaire`),
+  KEY `idNews` (`idNews`),
+  CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`idNews`) REFERENCES `news` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4	
+	
